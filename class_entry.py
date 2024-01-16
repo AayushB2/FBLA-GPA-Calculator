@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from PIL import Image, ImageTk
 
 default_text = ["Class Name", "Class Grade", "Class Weight(CP, Honors, AP, IB)"]
 
@@ -20,7 +21,7 @@ class EntryRow:
             root.focus()
 
         name = Entry(root, width= 20, fg ='grey')
-        name.grid(row = row_number, column = 0, sticky=W)
+        name.grid(row = row_number, column = 0, sticky='nsew', padx=0)
         name.insert(0, default_text[0])
 
         name.bind("<FocusIn>", focus_in)
@@ -28,7 +29,7 @@ class EntryRow:
         self.name = name
 
         grade= Entry(root, width= 20, fg ='grey')
-        grade.grid(row = row_number, column = 1, sticky=W)
+        grade.grid(row = row_number, column = 1, sticky='nsew', padx=0)
         grade.insert(0, default_text[1])
         
         grade.bind("<FocusIn>", focus_in)
@@ -36,14 +37,16 @@ class EntryRow:
         self.grade = grade
 
         weight= Entry(root, width= 30, fg ='grey')
-        weight.grid(row = row_number, column = 2, sticky=W)
+        weight.grid(row = row_number, column = 2, sticky='nsew', padx=0)
         weight.insert(0, default_text[2])
 
         weight.bind("<FocusIn>", focus_in)
         weight.bind("<Return>", enter)
         self.weight = weight
 
-        remove_img = PhotoImage(file = "C:\FBLA\Red_X.png")
+        remove_image = Image.open("C:\FBLA\Red_X.png")
+        remove_image = remove_image.resize((30, 30))
+        remove_img = ImageTk.PhotoImage(remove_image)
         self.remove_img = remove_img
 
         def remove_row():
@@ -60,6 +63,6 @@ class EntryRow:
 
                 remove_callback(self) 
 
-        remove_but = Button(root, image=remove_img,command= remove_row)
-        remove_but.grid(row=row_number, column=3, sticky=W)
+        remove_but = Button(root, image=remove_img,command= remove_row, borderwidth=0, relief="flat")
+        remove_but.grid(row=row_number, column=3, sticky='nsew')
         self.remove_but = remove_but

@@ -91,8 +91,8 @@ def calculate_gpa(grade, weight):
     
     return u_gpa, w_gpa
 
-gpa_text = tk.Text(root, width = 40, height = 10)
-gpa_text.grid(row=(classes[-1].row_number + 3), column = 3, pady=25)
+gpa_text = tk.Text(root, width = 20, height = 10)
+gpa_text.grid(row=(classes[-1].row_number + 3), column = 0, pady=25, sticky = 'nsew')
 gpa_text['state'] = 'disabled'
 
 def run_calc_button():
@@ -113,8 +113,15 @@ def run_calc_button():
 calc_gpa = tk.Button(width = 61, command = run_calc_button, text="Calculate GPA")
 calc_gpa.grid(row = (classes[-1].row_number + 2), column = 0, sticky=W, columnspan = 3)
 
-
-
-
+"""
+root.columnconfigure(0, weight=1)
+root.columnconfigure(1, weight=1)
+root.columnconfigure(2, weight=1)
+root.columnconfigure(3, weight=1)
+root.rowconfigure(0, weight=1)
+root.rowconfigure(1, weight=1)
+root.rowconfigure(2, weight=1)
+root.rowconfigure(3, weight=1)
+"""
 
 root.mainloop()
